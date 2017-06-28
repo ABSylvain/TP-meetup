@@ -1,6 +1,7 @@
 <?php
-include_once './objet/Compte.php';
-include_once './objet/Evenement.php';
+include_once '../objet/Compte.php';
+include_once '../objet/Evenement.php';
+
 class Data {
 
     public $compte;
@@ -21,33 +22,28 @@ class Data {
     function readAccount($login, $mdp) {
         $dir = scandir('./SaveAccount/');
         foreach($dir as $files){
-            if($files != '.' && $files != '..'&& $files != '.DS_Store' ){
-                $file = unserialize(file_get_contents('./SaveAccount/'.$files));
-                if($file->GetLogin() == $login && $file->GetMdp() == $mdp){
-                    session_start();
-                    $_SESSION['user'] = $file;
-                    echo 'Vous etes connecté ';
-                }elseif ($file->GetLogin() == $login && $file->GetMdp() !== $mdp) {
-                    echo 'Identifiant ou Password incorrect';
-                }elseif($file->GetLogin() !== $login && $file->GetMdp() == $mdp) {
-                    echo 'Identifiant ou Password incorrect';
-                }else{
-                    echo 'vous n\'exister pas';
-                }
+            if($files == '.' || $files == '..'|| $files == '.DS_Store' ){
+                continue;
+            }
+            $file = unserialize(file_get_contents('./SaveAccount/'.$files));
+            if($file->GetLogin() == $login && $file->GetMdp() == $mdp){
+               return $file;
             }
         }
+        return false;
     }
     
     
     
     // Pour sauvegarder un event
     
-    function saveEvent($event) {
-        if (!is_dir('./SaveEvent/'.$_SESSION['user']->getLogin())) {
-            mkdir('./SaveEvent/'.$_SESSION['user']->getLogin());
+    function saveEvent($user, $event) {
+        
+        if (!is_dir('./SaveEvent/'.$user->getLogin())) {
+            mkdir('./SaveEvent/'.$user->getLogin());
         }
-        if(isset($_SESSION['user'])){
-            $fichier = fopen('./SaveEvent/'.$_SESSION['user']->getLogin().'/'.$event->getNom().'.txt', 'w');
+        if(isset($user)){
+            $fichier = fopen('./SaveEvent/'.$user->getLogin().'/'.$event->getNom().'.txt', 'w');
             fwrite($fichier, serialize($event));
             fclose($fichier);
         }else{
@@ -55,9 +51,16 @@ class Data {
         }
     }
     
-    
-    //Pour suprimer la session 
-    function deco() {
-        session_destroy();
+    function loadEvent($user, $file) {
+        if ($dir = scandir('./SaveEvent/')) {
+            foreach($dir as $files){
+                if($files == $user->getLogin){
+                    $file = fopen(unserialize($files), 'r');
+                    fclose($file);
+                    return $file;
+                    
+                }
+            }
+        }
     }
 }

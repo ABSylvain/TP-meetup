@@ -1,7 +1,8 @@
 <?php
-include_once './Data.php';
-include_once './WorkPHP/Evenement.php';
-include_once './partHtml/logout.php';
+session_start();
+include_once '../Data.php';
+include_once '../objet/Evenement.php';
+
 
 $nom = htmlspecialchars($_POST['nom']);
 $description = htmlspecialchars($_POST['description']);
@@ -16,5 +17,7 @@ $lieu = htmlspecialchars($_POST['region']);
 
 $data = new Data();
 $event = new Evenement($nom, $lieu, $dure, $categorie, $date, $heure, $description, $ressource, $capacite);
+
+$data->saveEvent(unserialize($_SESSION['user']), $event);
+include_once '../partHtml/logout.php';
 $event->affichage();
-$data->saveEvent($event);
