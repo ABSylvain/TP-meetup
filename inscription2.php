@@ -1,8 +1,6 @@
 <?php
-session_start();
-
-include_once '../objet/Compte.php';
-include_once '../Data.php';
+include_once 'objet/Compte.php';
+include_once 'objet/Data.php';
 
 $nom = htmlspecialchars($_POST['nom']);
 $prenom = htmlspecialchars($_POST['prenom']);

@@ -57,7 +57,7 @@ class Evenement {
         return $this->heure;
     }
     function affichage() {
-        echo '<h3>Vos info : </h3>';
+        echo '<section>';
         echo '<h4>Nom : </h4><p>'.$this->nom.'</p>';
         echo '<h4>Lieu : </h4><p>'.$this->lieu.'</p>';
         echo '<h4>Durée : </h4><p>'.$this->dure.'</p>';
@@ -67,5 +67,8 @@ class Evenement {
         echo '<h4>Description : </h4><p>'.$this->description.'</p>';
         echo '<h4>Date : </h4><p>'.$this->date.'</p>';
         echo '<h4>Heure : </h4><p>'.$this->heure.'</p>';
+        echo '</section>';
+        echo '<br/>';
+        echo '<br/>';
     }
 }
