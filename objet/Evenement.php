@@ -67,8 +67,11 @@ class Evenement {
         echo '<h4>Description : </h4><p>'.$this->description.'</p>';
         echo '<h4>Date : </h4><p>'.$this->date.'</p>';
         echo '<h4>Heure : </h4><p>'.$this->heure.'</p>';
+        echo '<form method="POST" action="">
+                <input type="text" name="titreEvent" value="'.$this->getNom().'"/>
+                <button>Delete</button>
+              </form>';
         echo '</section>';
-        echo '<br/>';
-        echo '<br/>';
+        
     }
 }

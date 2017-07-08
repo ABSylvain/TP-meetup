@@ -9,6 +9,9 @@
     <body>
     <head>
         <?php include_once 'nav.php'; ?>
+    <form method="POST" action="affEvent.php">
+        <button name="btnEvent">Afficher Event</button>
+    </form>
     </head>
     <section>
         <h1>Bienvenue</h1>

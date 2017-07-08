@@ -89,5 +89,10 @@ class Data {
         }
         return $event;
     }
+    function delete() {
+       
+    }
 
 }
+
+
