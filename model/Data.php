@@ -1,6 +1,6 @@
 <?php
-include_once '../objet/Compte.php';
-include_once '../objet/Evenement.php';
+include_once 'Compte.php';
+include_once 'Evenement.php';
 
 class Data {
 

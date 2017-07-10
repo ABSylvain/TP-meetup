@@ -1,4 +1,4 @@
-<form method="POST" action="./WorkPHP/inscription2.php">
+<form method="POST" action="../WorkPHP/process-inscription.php">
 
     <input type="text" name="nom" placeholder="Nom"/>
     <br/>

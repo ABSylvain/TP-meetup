@@ -1,3 +1,7 @@
+<?php 
+include_once 'model/Compte.php';
+session_start(); 
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -11,10 +15,9 @@
             <h1>Bienvenue</h1>
             <p>Ici vous trouverez plein de truc à faire blablalbla ...</p>
         </section>
-        <div><?php include_once './partHtml/nav.php'; ?></div><br/>
-        <div><?php include_once './partHtml/formulaireLogin.php'; ?></div><br/>
-        <div><?php include_once './partHtml/formulaireInscription.php'; ?></div><br/>
-        <div><?php include_once './partHtml/formulaireEvent.php'?></div>
+        <form method="POST" action="WorkPHP/process-deco.php">
+            <button name="deco">Deco</button>
+        </form>
     </body>
 </html>
 
