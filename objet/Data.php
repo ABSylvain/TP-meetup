@@ -26,7 +26,7 @@ class Data {
             if ($files == '.' || $files == '..' || $files == '.DS_Store') {
                 continue;
             }
-            $file = unserialize(file_get_contents('./SaveAccount/' . $files));
+            $file = unserialize(file_get_contents('./SaveAccount/' . $files)); 
             if ($file->GetLogin() == $login && $file->GetMdp() == $mdp) {
                 return $file;
             }
@@ -94,5 +94,3 @@ class Data {
     }
 
 }
-
-

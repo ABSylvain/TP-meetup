@@ -1,8 +1,8 @@
 <?php
-include_once 'nav.php';
+session_start();
 if(isset($_POST['deco'])){
         session_destroy();
-        header("refresh:03;url=index.php");
+        header("refresh:01;url=index.php");
         echo 'Vous êtes bien déconnecté';
         
 }
