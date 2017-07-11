@@ -10,8 +10,9 @@ class Evenement {
     protected $description;
     protected $ressource;
     protected $capacite;
+    protected $creator;
     
-    function __construct($nom, $lieu, $dure, $categorie, $date, $heure, $description, $ressource, $capacite) {
+    function __construct($nom, $lieu, $dure, $categorie, $date, $heure, $description, $ressource, $capacite, $creator) {
         $this->nom = $nom;
         $this->lieu = $lieu;
         $this->dure = $dure;
@@ -21,6 +22,7 @@ class Evenement {
         $this->description = $description;
         $this->ressource = $ressource;
         $this->capacite = $capacite;
+        $this->creator = $creator;
     }
     function getNom() {
         return $this->nom;
@@ -56,6 +58,9 @@ class Evenement {
     function getHeure() {
         return $this->heure;
     }
+    function getCreator() {
+        return $this->creator;
+    }
     function affichage() {
         echo '<h3>Vos info : </h3>';
         echo '<h4>Nom : </h4><p>'.$this->nom.'</p>';
@@ -67,5 +72,7 @@ class Evenement {
         echo '<h4>Description : </h4><p>'.$this->description.'</p>';
         echo '<h4>Date : </h4><p>'.$this->date.'</p>';
         echo '<h4>Heure : </h4><p>'.$this->heure.'</p>';
+        echo '<h4>Creator : </h4><p>'.$this->creator.'</p>';
+        
     }
 }

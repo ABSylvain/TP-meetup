@@ -39,11 +39,14 @@ class Data {
     
     function saveEvent($user, $event) {
         
-        if (!is_dir('./SaveEvent/'.$user->getLogin())) {
-            mkdir('./SaveEvent/'.$user->getLogin());
+        if (!is_dir('./SaveEvent/')) {
+            mkdir('./SaveEvent/');
+        }
+        if (!is_dir('./SaveEvent/'.$user)) {
+            mkdir('./SaveEvent/'.$user);
         }
         if(isset($user)){
-            $fichier = fopen('./SaveEvent/'.$user->getLogin().'/'.$event->getNom().'.txt', 'w');
+            $fichier = fopen('./SaveEvent/'.$user.'/'.$event->getNom().'.txt', 'w');
             fwrite($fichier, serialize($event));
             fclose($fichier);
         }else{
@@ -51,16 +54,44 @@ class Data {
         }
     }
     
-    function loadEvent($user, $file) {
+    function loadEvent($user) {
         if ($dir = scandir('./SaveEvent/')) {
             foreach($dir as $files){
-                if($files == $user->getLogin){
-                    $file = fopen(unserialize($files), 'r');
-                    fclose($file);
-                    return $file;
-                    
+                if($files[0] != '.' && $files != 'DS_Store' && $files == $user->GetLogin()){
+                    foreach(scandir('./SaveEvent/'.$files) as $file){
+                        if($file[0] != '.' && $file != 'DS_Store' ){
+                            $event = unserialize(file_get_contents('./SaveEvent/'.$files.'/'.$file, 'r'));
+                            return $event;
+                        }
+                    }
                 }
             }
+        }
+    }
+
+    function loadAllEvent() {
+        $tab = [];
+        if ($dir = scandir('./SaveEvent/')) {
+            foreach($dir as $files){
+                if($files[0] != '.' && $files != 'DS_Store'){
+                    foreach(scandir('./SaveEvent/'.$files) as $file){
+                        if($file[0] != '.' && $file != 'DS_Store' ){
+                            $event = unserialize(file_get_contents('./SaveEvent/'.$files.'/'.$file, 'r'));
+                           $tab[] = $event;
+                        }
+                    }
+                }
+            }
+        }
+        return $tab;
+    }
+
+    function delet($nom, $login) {
+        $path = './SaveEvent/'.$login.'/'.$nom.'.txt';
+        if(is_file($path)) {
+            
+            unlink($path);
+            
         }
     }
 }

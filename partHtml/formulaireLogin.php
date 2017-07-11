@@ -1,7 +1,3 @@
-<?php 
-echo session_status();
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

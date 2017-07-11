@@ -1,4 +1,5 @@
 <?php 
+include_once 'model/Data.php';
 include_once 'model/Compte.php';
 session_start(); 
 ?>
@@ -13,11 +14,35 @@ session_start();
     <body>
         <section>
             <h1>Bienvenue</h1>
+            <?php 
+            if($_SESSION != false){
+                $compte = $_SESSION['user'];
+                echo '<h2>'.$compte->GetLogin().'</h2>';
+            }
+            
+             ?>
             <p>Ici vous trouverez plein de truc à faire blablalbla ...</p>
         </section>
-        <form method="POST" action="WorkPHP/process-deco.php">
-            <button name="deco">Deco</button>
+        <form method="POST" action="WorkPHP/aff-event.php">
+            <button>Tout les Event</button>
         </form>
+        <?php 
+        if($_SESSION['user'] != false){
+            echo '<form method="POST" action="WorkPHP/process-deco.php">
+                    <button>Deco</button>
+                  </form>';
+            echo '<form method="POST" action="WorkPHP/process-vosevent.php">
+                    <button name="vosevent">Vos Event</button>
+                  </form>';
+            echo '<form method="POST" action="partHtml/formulaireEvent.php">
+                    <button>Creer event</button>
+                  </form>';
+        }else{
+            echo '<form method="POST" action = "partHtml/formulaireLogin.php">
+                    <button>Connexion</button>
+                  </form>';
+        }
+        ?>
     </body>
 </html>
 

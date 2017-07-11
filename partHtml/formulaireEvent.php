@@ -1,4 +1,4 @@
-<form method="POST" action="./WorkPHP/Evenement2.php">
+<form method="POST" action="../WorkPHP/process-event.php">
     <input type="text" name="nom" placeholder="Nom de l'évenement"/>
     <br/>
     <textarea cols="50" rows="20" name="description" placeholder="Entrez votre evenements"></textarea>
