@@ -25,7 +25,6 @@ if($_SESSION != false){
 }
 
 $user = $compte->GetLogin();
-
 $data->saveEvent($user, $event);
 header('Location: ../index.php');
 

@@ -19,10 +19,15 @@ session_start();
                 $compte = $_SESSION['user'];
                 echo '<h2>'.$compte->GetLogin().'</h2>';
             }
-            
              ?>
             <p>Ici vous trouverez plein de truc à faire blablalbla ...</p>
         </section>
+        <form method="POST" action="WorkPHP/process-tri.php">
+            <button name="loisir" value="loisir">Loisir</button>
+            <button name="sport" value="sport">Sport</button>
+            <button name="professionnel" value="professionnel">Pro</button>
+            <button name="travail" value="travail">Taff</button>
+        </form>
         <form method="POST" action="WorkPHP/aff-event.php">
             <button>Tout les Event</button>
         </form>
@@ -32,7 +37,7 @@ session_start();
                     <button>Deco</button>
                   </form>';
             echo '<form method="POST" action="WorkPHP/process-vosevent.php">
-                    <button name="vosevent">Vos Event</button>
+                    <button>Vos Event</button>
                   </form>';
             echo '<form method="POST" action="partHtml/formulaireEvent.php">
                     <button>Creer event</button>

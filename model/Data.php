@@ -89,9 +89,57 @@ class Data {
     function delet($nom, $login) {
         $path = './SaveEvent/'.$login.'/'.$nom.'.txt';
         if(is_file($path)) {
-            
             unlink($path);
-            
+        }
+    }
+    function eventtrier($categori) {
+        $tab = [];
+        if ($dir = scandir('./SaveEvent/')) {
+            foreach($dir as $files){
+                if($files[0] != '.' && $files != 'DS_Store'){
+                    foreach(scandir('./SaveEvent/'.$files) as $file){
+                        if($file[0] != '.' && $file != 'DS_Store' ){
+                            $event = unserialize(file_get_contents('./SaveEvent/'.$files.'/'.$file, 'r'));
+                            if($event->getCategorie() == $categori)
+                            $tab[] = $event;
+                        }
+                    }
+                }
+            }
+        }
+        return $tab;
+    }
+    function suprauto(){
+        $date = date(DATE_RFC2822);
+        if ($dir = scandir('./SaveEvent/')){
+            foreach($dir as $files){
+                if($files[0] != '.' && $files != 'DS_Store'){
+                    foreach(scandir('./SaveEvent/'.$files) as $file){
+                        if($file[0] != '.' && $file != 'DS_Store' ){
+                            $event = unserialize(file_get_contents('./SaveEvent/'.$files.'/'.$file, 'r'));
+                            if($event->getDatetoday() <= $date){
+                                unlink($event);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    function ajouparticip($nom) {
+        if ($dir = scandir('./SaveEvent/')) {
+            foreach($dir as $files){
+                if($files[0] != '.' && $files != 'DS_Store'){
+                    foreach(scandir('./SaveEvent/'.$files) as $file){
+                        if($file[0] != '.' && $file != 'DS_Store' ){
+                            $event = unserialize(file_get_contents('./SaveEvent/'.$files.'/'.$file, 'r'));
+                            if($event->getNom == $nom){
+                                $event->setParticip();
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

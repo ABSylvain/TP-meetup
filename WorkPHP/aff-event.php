@@ -16,4 +16,8 @@ foreach($events as $event){
                     </form>';
             }
 }
+echo '<form method="POST" action="process-addpart.php">
+                        <input type="hidden" name="nom" value="'.$event->getNom().'">
+                        <button>Delete</button>
+                    </form>';
 ?>
